@@ -10,4 +10,4 @@ const getHome = async() => {
     return res;
 }
 
-export default getHome;
+export {getHome};
