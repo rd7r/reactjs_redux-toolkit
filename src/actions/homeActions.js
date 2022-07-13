@@ -7,6 +7,7 @@ export const fetchHome = async(dispatch) => {
     try {
         const res = await getHome();
         dispatch(received(FETCH_POSTS_SUCCESS, res.data));
+        // console.log(res.data);
     } catch (e) {
         dispatch(error(FETCH_POSTS_ERROR));
     }

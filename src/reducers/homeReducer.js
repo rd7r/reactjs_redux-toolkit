@@ -3,6 +3,7 @@ import { FETCH_POSTS_REQUEST,FETCH_POSTS_SUCCESS,FETCH_POSTS_ERROR } from '../ac
 import { getNewState }  from '../shared/utils/frontend';
 const initialState = {
     posts: [],
+    total:0,
     isLoading: false
 }
 
@@ -12,9 +13,10 @@ export const HomeReducer = (state = initialState, actions) => {
             return getNewState(state, {isLoading: true})
         }
         case FETCH_POSTS_SUCCESS:{
-            const { payload: {heroe} } = actions;
+            const { payload: {posts, count}, } = actions;
             return getNewState(state, {
-                heroe,
+                posts,
+                total: count,
                 isLoading: false
             });
         }

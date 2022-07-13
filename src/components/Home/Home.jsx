@@ -1,10 +1,15 @@
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { useEffect } from 'react';
+import { fetchHome } from "../../actions/homeActions";
 const Home = () => {
-    const home_reducer = useSelector((state) => (state.HomeReducer));
-    console.log(home_reducer);
+    const dispatch = useDispatch();
+    useEffect(() => {
+        fetchHome(dispatch);
+    },[dispatch]);
+    const items = useSelector((state) => (state.HomeReducer));
     return (
         <>
-            <p className="text-center h3">{home_reducer.posts}</p>
+            <p className="text-center h3">{console.log(items.posts[0])}</p>
             <div className="card-group">
                 <div className="card">
                     <img src="hola.jpg" className="card-img-top" alt="hola.jpg"/>
