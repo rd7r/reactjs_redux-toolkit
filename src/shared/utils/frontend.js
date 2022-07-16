@@ -1,6 +1,6 @@
 // funciones puras
 export function getNewState(state, newState){
-    return {...state,newState}
+    return {...state,...newState}
 }
 
 export function isFirstRender(items){
