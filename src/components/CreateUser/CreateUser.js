@@ -1,16 +1,18 @@
 import { useState } from 'react';
 // const imagen = require('./logo.jpg');
+import {addUser} from '../../services/UserSercice';
 const data = {
         nombre: '',
         tipo: '',
         age: '',
         gender: '',
-        habilidad: [],
+        skills: '',
         img: '',
     }
 const CreateUser = () => {
     const [dato, setDatos] = useState(data);
-    const [imagen, setImagen] = useState({img:'', viewimg:''});
+    const [imagen, setImagen] = useState({img:null, viewimg:''});
+    const [skills, setSkills] = useState([]);
     const hadleOnChange = (e) => {
         setDatos({
             ...dato,
@@ -18,14 +20,22 @@ const CreateUser = () => {
         })       
     }
 
-    const hadleOnSubmit = (e) => {
+    const hadleOnSubmit = async(e) => {
         e.preventDefault();
-        // const res = await UserService.addUser(dato);
-        // console.log(res);
-        setDatos(
+        const res = await addUser(dato);
+        console.log(res);
+        setDatos({
             ...dato,
-            ...imagen
-        );
+            img: imagen.img,
+            skills: skills
+        });
+    }
+
+    const hadleshkills = (e) => {
+        setSkills([
+            ...skills,
+            e.target.value
+        ]);
     }
 
     const hadlefileimg = (e) => {
@@ -34,8 +44,8 @@ const CreateUser = () => {
             img: e.target.files[0].name,
             viewimg: URL.createObjectURL(e.target.files[0])
         })
-        console.log(e.target.value)
     }
+    // console.log(dato);
     return (
         <>
             <form className="shadow-lg p-3 mb-5 bg-body rounded mt-5 p-2" onSubmit={hadleOnSubmit}>
@@ -89,9 +99,9 @@ const CreateUser = () => {
                                 <label htmlFor="exampleInputHabilidad" className="form-label">Habilidades</label>
                             </div>
                             <div className='d-flex col-lg-8'>
-                                <input type="Text" className="form-control" onChange={hadleOnChange} id="habilidad" name='habilidad' placeholder='Habilidad 1'/>
-                                <input type="Text" className="form-control" onChange={hadleOnChange} id="habilidad" name='habilidad' placeholder='Habilidad 2'/>
-                                <input type="Text" className="form-control" onChange={hadleOnChange} id="habilidad" name='habilidad' placeholder='Habilidad 3'/>
+                                <input type="Text" className="form-control" onChange={hadleshkills} id="habilidad" name='habilidad1' placeholder='Habilidad 1'/>
+                                <input type="Text" className="form-control" onChange={hadleshkills} id="habilidad" name='habilidad2' placeholder='Habilidad 2'/>
+                                <input type="Text" className="form-control" onChange={hadleshkills} id="habilidad" name='habilidad3' placeholder='Habilidad 3'/>
                             </div>
                         </div>
                         <button type="submit" className="btn btn-primary col-lg-12">Registrar</button>
