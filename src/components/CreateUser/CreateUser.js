@@ -21,13 +21,13 @@ const CreateUser = () => {
 
     const hadleOnSubmit = async(e) => {
         e.preventDefault();
-        setDatos({
+        let dat = {
             ...dato,
-            img: imagen.img.name,
-            habilidad: [...skills]
-        });
-        const res = await addUser(dato,imagen.img);
-        console.log(res);
+            img:imagen.img.name,
+            habilidad:[...skills]
+        }
+        const res = await addUser(dat,imagen.img);
+        console.log(res.data);
     }
 
     const hadleshkills = (e) => {

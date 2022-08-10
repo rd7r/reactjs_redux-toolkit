@@ -1,6 +1,6 @@
 import { api } from '../api/api';
 import {app} from './firebase';
-import {getStorage, ref, uploadBytes} from 'firebase/storage';
+import {getStorage, ref, uploadBytes, getDownloadURL} from 'firebase/storage';
 import 'firebase/storage';
 // nombre, tipo, age, gender, habilidad, img
 const URL_HEROES = '/heroe';
@@ -22,3 +22,11 @@ export const addUser = async (heroe,img) => {
     }
     return res;
 };
+
+export const getURLImage = async (name) => {
+    const url = getDownloadURL(ref(storage, `${name}`));
+    if (!url) {
+        throw new Error('image not found');
+    }
+    return url;
+}
