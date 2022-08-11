@@ -24,9 +24,6 @@ export const addUser = async (heroe,img) => {
 };
 
 export const getURLImage = async (name) => {
-    const url = getDownloadURL(ref(storage, `${name}`));
-    if (!url) {
-        throw new Error('image not found');
-    }
+    const url = await getDownloadURL(ref(storage, `${name}`));
     return url;
 }

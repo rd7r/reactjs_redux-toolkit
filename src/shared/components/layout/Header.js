@@ -22,9 +22,6 @@ const Header = () => {
                 <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
                     <Link to='/' className="nav-link active" aria-current="page">
-                    Home
-                    </Link>
-                    <Link to='/Principal' className="nav-link active" aria-current="page">
                     Principal
                     </Link>
                     <Link to='/Products' className='nav-link'>
